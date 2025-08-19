@@ -1,2 +1,3 @@
-Model,ROC-AUC,PR-AUC,Accuracy,Positive Rate Predicted
-RandomForest,0.9796123739667842,0.9446830249531563,0.9998484453310589,0.001543742906889041
+version https://git-lfs.github.com/spec/v1
+oid sha256:ecead9df625b3990812a39da6aba1921e2276b2ffc65a0c5cae46d88699cc580
+size 145
