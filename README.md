@@ -122,7 +122,6 @@ El proyecto se llevó a cabo en distintas etapas, cada una acompañada de análi
 
 Durante el entrenamiento probamos distintas configuraciones: funciones de activación, arquitecturas de red, tasas de aprendizaje y número de épocas. Estas curvas muestran el comportamiento de la pérdida y la precisión, permitiendo detectar tanto mejoras como posibles problemas de sobreajuste.
 
-<table> <tr> <td><img src="results/training_curve_Act_Tanh.png" width="300"><br><sub><em>Función de activación Tanh</em></sub></td> <td><img src="results/training_curve_LR_High.png" width="300"><br><sub><em>Learning Rate alto</em></sub></td> <td><img src="results/training_curve_LR_Low.png" width="300"><br><sub><em>Learning Rate bajo</em></sub></td> </tr> </table>
 
 ## Modelado de Machine Learning
 
