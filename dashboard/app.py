@@ -64,7 +64,6 @@ if uploaded_file is not None:
     shap_values = explainer.shap_values(sample_df[features_model])
 
     # Summary plot
-    st.set_option('deprecation.showPyplotGlobalUse', False)
     plt.figure(figsize=(10,6))
     shap.summary_plot(shap_values, sample_df[features_model], show=False)
     st.pyplot(bbox_inches='tight')
