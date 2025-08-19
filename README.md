@@ -1,10 +1,12 @@
 # Detección de Fraude en Transacciones Financieras
 
-## Resumen
+## Introduccion 
 
-Este proyecto aborda un desafío clave para el sector fintech: detectar fraudes en transacciones digitales minimizando el impacto sobre clientes legítimos. El objetivo es lograr un equilibrio entre la máxima detección de fraudes y la mínima generación de falsos positivos, ya que cada operación legítima bloqueada deteriora la experiencia del usuario y puede generar pérdidas de clientes.
+El fraude financiero es uno de los grandes retos en la era digital. Cada día, bancos y empresas fintech procesan miles de transacciones, y entre ellas se esconden intentos de fraude que, si no son detectados, pueden generar pérdidas económicas y afectar la confianza de los clientes.
 
-La solución desarrollada es un prototipo de Red Neuronal Artificial (RNA) implementada íntegramente en NumPy, lo que permitió un control total sobre el flujo de datos, inicialización de pesos, funciones de activación y procesos de entrenamiento. Este enfoque garantiza un entendimiento profundo de la lógica interna del modelo y sienta las bases para una transición a entornos productivos.
+Este proyecto nace con ese desafío: diseñar un modelo de inteligencia artificial que identifique transacciones fraudulentas con la mayor precisión posible, pero sin caer en el error de bloquear operaciones legítimas que afectan la experiencia del usuario.
+
+Nuestra propuesta combina modelos de machine learning con técnicas modernas de interpretabilidad. Además, construimos un prototipo práctico en forma de dashboard interactivo, que muestra cómo estas soluciones podrían aplicarse en un escenario real.
 
 
 ## Estructura del proyecto
