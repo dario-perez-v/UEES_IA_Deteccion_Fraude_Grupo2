@@ -2,37 +2,37 @@
 
 ## Estructura del proyecto
 ```
-├── dashboard
+├── dashboard/
 │       app.py
-├── data
+├── data/
 │   │   creditcard.csv
-│   └── processed
+│   └── processed/
 │           creditcard_clean.csv
 │           creditcard_ready.csv
-├── models
-│   └── trained_models
+├── models/
+│   └── trained_models/
 │           rf_model.pkl
 │           xgb_model.pkl
-├── notebooks
+├── notebooks/
 │       data_cleaning.ipynb
 │       evaluation.ipynb
 │       exploratory.ipynb
 │       modeling.ipynb
 │       simulation.ipynb
-└── src
+└── src/
     │   utils.py
     │   visualization.py
-    ├── features
+    ├── features/
     │       feature_engineering.py
-    ├── interpretability
+    ├── interpretability/
     │       shap_analysis.py
-    ├── scoring
+    ├── scoring/
     │      realtime.py
     │      simulator.py
-    ├── tables
+    ├── tables/
     │       metrics_RandomForest.csv
     │       metrics_XGBoost.csv
-    ├── visualization
+    ├── visualization/
     │       confusion_matrix_RandomForest.png
     │       confusion_matrix_XGBoost.png
     │       correlation_matrix.png
