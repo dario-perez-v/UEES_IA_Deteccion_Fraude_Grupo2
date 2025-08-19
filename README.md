@@ -165,7 +165,16 @@ Se construyó un [DASHBOARD](https://ueesiadeteccionfraudegrupo2-cjnrxbfkgmrzndy
 - Mostrar curvas ROC y Precision-Recall  
 - Explorar gráficas de importancia de variables con SHAP  
 
-Este dashboard centraliza el análisis para analistas y responsables de seguridad financiera.  i6
+Este dashboard centraliza el análisis para analistas y responsables de seguridad financiera.
+
+![Dashboard1](src/visualization/Dashboard1.jpeg) 
+
+
+![Dashboard2](src/visualization/Dashboard2.jpeg)  
+
+
+![Dashboard3](src/visualization/Dashboard3.jpeg)  
+
 
 ---
 
