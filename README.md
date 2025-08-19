@@ -116,6 +116,14 @@ Esta estrategia asegura reproducibilidad y calidad en cada etapa.
 
 La primera etapa consistió en limpiar y preparar los datos. En el notebook [data_cleaning](notebooks/data_cleaning.ipynb), cargamos el dataset de Credit Card Fraud Detection, tratamos valores nulos y outliers, y generamos variables derivadas como Amount_log. Los datos limpios se guardaron en [creditcard_clean](data/processed/creditcard_clean.csv), que luego sirvieron como entrada para los modelos. Durante este proceso se generaron gráficos y tablas que muestran la distribución de los datos antes y después de la limpieza, todos almacenados en [visualization](src/visualization/).
 
+El proyecto se llevó a cabo en distintas etapas, cada una acompañada de análisis visuales y experimentos que nos permitieron entender cómo se comportaban los modelos:
+
+1. Curvas de Entrenamiento
+
+Durante el entrenamiento probamos distintas configuraciones: funciones de activación, arquitecturas de red, tasas de aprendizaje y número de épocas. Estas curvas muestran el comportamiento de la pérdida y la precisión, permitiendo detectar tanto mejoras como posibles problemas de sobreajuste.
+
+<table> <tr> <td><img src="results/training_curve_Act_Tanh.png" width="300"><br><sub><em>Función de activación Tanh</em></sub></td> <td><img src="results/training_curve_LR_High.png" width="300"><br><sub><em>Learning Rate alto</em></sub></td> <td><img src="results/training_curve_LR_Low.png" width="300"><br><sub><em>Learning Rate bajo</em></sub></td> </tr> </table>
+
 ## Modelado de Machine Learning
 
 En los notebooks de modelado (notebooks/modeling/modeling_rf_xgb.ipynb), entrenamos modelos de Random Forest y XGBoost, comparando sus métricas de desempeño como ROC-AUC y PR-AUC. Los modelos se guardaron en models/trained_models/ y los scripts de entrenamiento están en src/models/train_models.py. Esta etapa permitió seleccionar los modelos más precisos para la detección de fraude.
