@@ -32,7 +32,7 @@ Frente a este escenario, una solución de **detección de fraude en tiempo real,
 
 ---
 
-## 3) Objetivos del Proyecto
+## 3. Objetivos del Proyecto
 
 El proyecto persigue **cuatro objetivos estratégicos**:
 
@@ -43,7 +43,7 @@ El proyecto persigue **cuatro objetivos estratégicos**:
 
 ---
 
-## 2. Estructura del proyecto
+## 4. Estructura del proyecto
 
 La estructura del repositorio está diseñada para ser modular y escalable, facilitando la reproducibilidad de los experimentos y la organización de los componentes.
 
