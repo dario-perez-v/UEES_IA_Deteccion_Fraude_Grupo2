@@ -8,6 +8,9 @@ La solución desarrollada es un prototipo de Red Neuronal Artificial (RNA) imple
 
 
 ## Estructura del proyecto
+
+La estructura del repositorio está diseñada para ser modular y escalable, facilitando la reproducibilidad de los experimentos y la organización de los componentes.
+
 ```
 ├── dashboard/
 │       app.py
