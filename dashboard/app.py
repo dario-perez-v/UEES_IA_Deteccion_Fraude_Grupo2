@@ -31,6 +31,10 @@ features_model = ['Time', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8',
 # --------------------
 st.title("Dashboard - Detección de Fraude")
 
+# Selección del modelo
+modelo_seleccionado = st.selectbox("Selecciona el modelo para predicción:", ["Random Forest", "XGBoost"])
+
+# Subida de archivo CSV
 uploaded_file = st.file_uploader("Sube tu archivo CSV", type=["csv"])
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
@@ -42,32 +46,35 @@ if uploaded_file is not None:
     # Seleccionar columnas para predicción
     X = df[features_model]
 
-    # Predicciones
-    df['RF_prob'] = rf_model.predict_proba(X)[:,1]
-    df['XGB_prob'] = xgb_model.predict_proba(X)[:,1]
+    # Predicciones según modelo seleccionado
+    if modelo_seleccionado == "Random Forest":
+        df['RF_prob'] = rf_model.predict_proba(X)[:,1]
+        st.write("Distribución de probabilidades de fraude (Random Forest):")
+        sample_df = df.sample(min(5000, len(df)))
+        st.bar_chart(sample_df[['RF_prob']])
+    else:
+        df['XGB_prob'] = xgb_model.predict_proba(X)[:,1]
+        st.write("Distribución de probabilidades de fraude (XGBoost):")
+        sample_df = df.sample(min(5000, len(df)))
+        st.bar_chart(sample_df[['XGB_prob']])
 
-    # Mostrar primeras filas
+        # --------------------
+        # SHAP explainability solo para XGB
+        # --------------------
+        st.write("Explicabilidad del modelo XGBoost con SHAP:")
+        explainer = shap.TreeExplainer(xgb_model)
+        shap_values = explainer.shap_values(sample_df[features_model])
+
+        fig, ax = plt.subplots(figsize=(10,6))
+        shap.summary_plot(shap_values, sample_df[features_model], show=False)
+        fig = plt.gcf()
+        st.pyplot(fig)
+        plt.close(fig)
+
+    # Mostrar primeras filas del dataset
     st.write("Primeras filas del dataset:")
     st.dataframe(df.head())
 
-    # Muestreo para visualización
-    sample_df = df.sample(min(5000, len(df)))  # máximo 5000 filas
-
-    st.write("Distribución de probabilidades de fraude:")
-    st.bar_chart(sample_df[['RF_prob', 'XGB_prob']])
-
-    # --------------------
-    # SHAP explainability
-    # --------------------
-    st.write("Explicabilidad del modelo XGBoost con SHAP:")
-    explainer = shap.TreeExplainer(xgb_model)
-    shap_values = explainer.shap_values(sample_df[features_model])
-
-    # Summary plot
-    plt.figure(figsize=(10,6))
-    shap.summary_plot(shap_values, sample_df[features_model], show=False)
-    st.pyplot(bbox_inches='tight')
-    plt.clf()
-
 else:
     st.info("Por favor sube un archivo CSV para continuar.")
+
