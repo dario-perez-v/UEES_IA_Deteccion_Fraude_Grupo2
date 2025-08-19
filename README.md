@@ -110,67 +110,146 @@ Esta estrategia asegura reproducibilidad y calidad en cada etapa.
 
 ---
 
-## Metodologia del proyecto
+## 6. Metodologia del proyecto
 
-## Limpieza y Preparación de Datos
+### 6.1 Limpieza y Preparación de Datos  
+En el notebook `notebooks/data_cleaning`, se cargó el dataset de **Credit Card Fraud Detection**. Se trataron valores nulos y outliers, y se generaron variables derivadas como `Amount_log`.  
+Los datos limpios se guardaron en `creditcard_clean.csv`, que luego sirvieron como entrada para el modelado.  
 
-La primera etapa consistió en limpiar y preparar los datos. En el notebook [data_cleaning](notebooks/data_cleaning.ipynb), cargamos el dataset de Credit Card Fraud Detection, tratamos valores nulos y outliers, y generamos variables derivadas como Amount_log. Los datos limpios se guardaron en [creditcard_clean](data/processed/creditcard_clean.csv), que luego sirvieron como entrada para los modelos. Durante este proceso se generaron gráficos y tablas que muestran la distribución de los datos antes y después de la limpieza, todos almacenados en [visualization](src/visualization/).
-
-En la fase de exploración de datos realizamos un análisis para entender cómo se distribuían las transacciones y si existían patrones que diferenciaran a las fraudulentas de las legítimas.
-
-<p align="center"> <img src="src/visualization/hist_amount.png" alt="Distribución de montos" width="600"><br> <em>Figura 1. Distribución de montos en las transacciones</em> </p>
+Durante el proceso se generaron gráficos y tablas que muestran la distribución antes y después de la limpieza, almacenados en `reports/figures/`.  
 
 
-También se evaluaron las correlaciones entre variables, lo cual permitió identificar relaciones significativas que podían aportar información útil al modelo.
+### 6.2 Modelado de Machine Learning  
+En `notebooks/modeling/modeling_rf_xgb.ipynb` se entrenaron modelos de **Random Forest** y **XGBoost**, comparando sus métricas de desempeño como **ROC-AUC** y **PR-AUC**.  
 
-<p align="center"> <img src="src/visualization/correlation_matrix.png" alt="Matriz de correlación" width="650"><br> <em>Figura 2. Correlaciones entre las variables del dataset</em> </p>
+Los modelos entrenados fueron almacenados en `models/trained_models/`.  
+Los scripts de entrenamiento se encuentran en `src/models/train_models.py`.  
 
-
-## Modelado de Machine Learning
-
-La fase de modelado se llevó a cabo en el notebook [modeling](notebooks/modeling.ipynb). Se entrenaron modelos supervisados de **Random Forest (RF)** y **XGBoost (XGB)**, utilizando el conjunto de datos previamente procesado. Los scripts de entrenamiento se encuentran en [`src/models/train_models.py`](src/models/train_models.py), y los modelos entrenados fueron almacenados en [`models/trained_models/`](models/trained_models/).  
-
-Random Forest fue considerado como baseline por su robustez y facilidad de interpretación inicial, mientras que XGBoost se evaluó como modelo de referencia por su capacidad de manejar datos desbalanceados y capturar interacciones complejas entre variables. Los resultados confirmaron que XGBoost ofrecía un mejor equilibrio entre recall y precisión, convirtiéndose en el modelo con mayor potencial para despliegue en escenarios reales.
+**Hallazgo principal:**  
+XGBoost superó a Random Forest, mostrando mayor capacidad de detección de fraudes con menos falsos negativos.  
 
 
-## Evaluación de Modelos
+### 6.3 Evaluación de Modelos  
+La evaluación se realizó en `notebooks/evaluation/evaluate_models.ipynb`.  
+Se calcularon:  
+- Probabilidades de fraude  
+- Curvas ROC y Precision-Recall  
+- Matrices de confusión  
+- Métricas comparativas  
 
-La evaluación de los modelos se realizó en el notebook [evaluation](notebooks/evaluation.ipynb). Se calcularon métricas clave como **ROC-AUC** y **PR-AUC**, además de matrices de confusión para comprender en detalle el comportamiento de cada modelo frente a falsos positivos y falsos negativos.  
-
-Los resultados se visualizaron mediante curvas ROC y Precision-Recall, que permiten analizar el desempeño de los clasificadores en contextos de clases desbalanceadas. Todas las figuras se encuentran almacenadas en [`src/visualization/`](src/visualization/), mientras que las métricas tabulares fueron guardadas en [`src/tables/`](src/tables/).  
-
-En las matrices de confusión se evidenció que **Random Forest** tendía a generar un mayor número de falsos negativos, mientras que **XGBoost** alcanzaba un recall superior, lo que lo posiciona como el modelo más adecuado para un sistema antifraude, donde el costo de no detectar un fraude es mayor que el de una alerta falsa.
-
-
-## Pipeline de Feature Engineering
-
-El pipeline de **feature engineering**, implementado en [`src/features/feature_engineering.py`](src/features/feature_engineering.py), se diseñó para garantizar que las transformaciones aplicadas durante el entrenamiento se repliquen de forma consistente en cualquier nueva transacción evaluada por el sistema.  
-
-Este componente asegura coherencia en el flujo de datos, evita errores en producción y facilita la escalabilidad del sistema. Es un paso clave para trasladar el modelo desde un entorno experimental hacia un entorno productivo.
-
-## Sistema de Scoring en Tiempo Real
-
-Con el propósito de simular un escenario real de negocio, se implementó un sistema de scoring en tiempo real en [`src/scoring/realtime.py`](src/scoring/realtime.py). Este módulo recibe nuevas transacciones y devuelve la **probabilidad de fraude** en cuestión de milisegundos.  
-
-Para validar su funcionamiento se desarrolló además un **simulador de transacciones** en [`src/scoring/simulator.py`](src/scoring/simulator.py) y en el notebook [simulation](notebooks/simulation.ipynb). El simulador permite generar datos sintéticos y someter al sistema a distintos escenarios de carga, lo que facilita la validación end-to-end y la calibración de umbrales de decisión.
+Todas las figuras fueron guardadas en `reports/figures/`, asegurando trazabilidad de resultados.  
 
 
-## Interpretabilidad del Modelo con SHAP
+### 6.4 Pipeline de Feature Engineering  
+El pipeline en `src/features/feature_engineering.py` asegura que las mismas transformaciones aplicadas en el entrenamiento se utilicen sobre nuevas transacciones.  
 
-La interpretabilidad es un aspecto crítico en soluciones antifraude, tanto para garantizar confianza con los clientes como para cumplir requisitos regulatorios. Por ello se utilizó **SHAP** en [`src/interpretability/shap_analysis.py`](src/interpretability/shap_analysis.py).  
-
-El análisis con SHAP permitió identificar qué variables tenían mayor influencia en las predicciones. Se generaron tanto gráficos **globales** (summary plots que muestran el impacto agregado de las variables) como explicaciones **locales** (caso por caso), ofreciendo una trazabilidad completa de las decisiones del modelo.  
+Esto garantiza **consistencia y confiabilidad** en el scoring y facilita la integración en sistemas de producción.  
 
 
-## Dashboard Interactivo
+### 6.5 Sistema de Scoring en Tiempo Real  
+En `src/scoring/realtime.py` se implementó un sistema de scoring capaz de calcular la probabilidad de fraude para cada transacción.  
 
-Finalmente, se desarrolló un **dashboard interactivo** en Streamlit, ubicado en [`dashboard/app.py`](dashboard/app.py). Esta interfaz permite:  
+Se complementa con un **simulador de transacciones** (`src/scoring/simulator.py` y `notebooks/simulation/simulation.ipynb`), que permite probar el flujo completo con datos ficticios.  
 
-- Subir archivos CSV de transacciones.  
-- Visualizar las probabilidades de fraude generadas por los modelos.  
-- Explorar gráficas de rendimiento como curvas ROC y Precision-Recall.  
-- Consultar de manera interactiva los SHAP summary plots para interpretar las decisiones del sistema.  
 
-El dashboard constituye una herramienta clave para **analistas y responsables de seguridad financiera**, ya que facilita la monitorización del sistema en tiempo real y acerca resultados técnicos a perfiles no técnicos.  
+### 6.6 Interpretabilidad con SHAP  
+En `src/interpretability/shap_analysis.py` se aplicaron técnicas de **SHAP values** para explicar las predicciones.  
 
-En conjunto, esta metodología asegura un flujo de trabajo claro, reproducible y escalable, que cubre desde la preparación inicial de los datos hasta la interpretación y visualización de los resultados, alineándose con las necesidades del negocio y los requisitos técnicos de un sistema antifraude moderno.
+Los gráficos de summary plot muestran la importancia de cada variable en las decisiones del modelo, lo que aporta transparencia y cumplimiento regulatorio.  
+
+
+### 6.7 Dashboard Interactivo  
+Se construyó un dashboard en **Streamlit** (`dashboard/app.py`) que permite:  
+- Subir archivos CSV de transacciones  
+- Visualizar probabilidades de fraude  
+- Mostrar curvas ROC y Precision-Recall  
+- Explorar gráficas de importancia de variables con SHAP  
+
+Este dashboard centraliza el análisis para analistas y responsables de seguridad financiera.  
+
+---
+
+
+## 7. Resultados  
+
+### 7.1 Distribución de Montos  
+![Distribución Amount](src/visualization/hist_amount.png)  
+
+El histograma muestra que la mayoría de las transacciones tienen valores bajos, mientras que algunos outliers corresponden a montos altos, comúnmente asociados con fraudes.  
+Esto motivó la creación de `Amount_log`.  
+
+---
+
+### 7.2 Matriz de Correlación  
+![Matriz de Correlación](src/visualization/correlation_matrix.png)  
+
+Las variables presentan correlaciones bajas entre sí, lo cual favorece el aprendizaje de patrones complejos.  
+La variable `Class` tiene poca correlación directa con atributos individuales, confirmando la necesidad de modelos avanzados.  
+
+---
+
+### 7.3 Matrices de Confusión  
+
+- **Random Forest**  
+![Confusion RF](src/visualization/confusion_matrix_RandomForest.png)  
+
+- **XGBoost**  
+![Confusion XGB](src/visualization/confusion_matrix_XGBoost.png)  
+
+XGBoost logró menos falsos negativos, siendo más efectivo en la reducción de pérdidas por fraudes no detectados.  
+
+---
+
+### 7.4 Curvas ROC  
+
+- **ROC Random Forest**  
+![ROC RF](src/visualization/roc_curve_RandomForest.png)  
+
+- **ROC XGBoost**  
+![ROC XGB](src/visualization/roc_curve_XGBoost.png)  
+
+- **ROC Comparativa**  
+![ROC Comparativa](src/visualization/roc_curve.png)  
+
+XGBoost obtuvo mejor trade-off entre sensibilidad y especificidad, con AUC ≈ 0.99 frente a 0.98 de Random Forest.  
+
+---
+
+### 7.5 Curvas Precision-Recall  
+
+- **Random Forest**  
+![PR RF](src/visualization/pr_curve_RandomForest.png)  
+
+La curva PR muestra buen desempeño general (PR-AUC ≈ 0.94).  
+El modelo de **XGBoost** (incluido en el repositorio) mantuvo un mejor equilibrio, confirmando su idoneidad en datasets desbalanceados.  
+
+---
+
+## 8. Conclusiones  
+
+El desarrollo de este proyecto permitió demostrar cómo la integración de técnicas avanzadas de Machine Learning, pipelines reproducibles y herramientas de interpretabilidad puede generar un **sistema robusto y escalable para la detección de fraudes en fintech**.  
+
+Los hallazgos clave se pueden resumir en los siguientes puntos:  
+
+1. **XGBoost como modelo óptimo**  
+   - Superó a Random Forest en métricas críticas como ROC-AUC, PR-AUC y reducción de falsos negativos.  
+   - Garantiza un mejor balance entre sensibilidad y precisión, lo que resulta fundamental en contextos de alta desproporción entre transacciones legítimas y fraudulentas.  
+
+2. **Minimización de pérdidas y protección del cliente**  
+   - La reducción de **falsos negativos** implica menores pérdidas económicas directas.  
+   - Al mismo tiempo, la disminución de **falsos positivos** protege la experiencia del cliente, evitando bloqueos innecesarios que podrían traducirse en desconfianza y fuga de usuarios.  
+
+3. **Escalabilidad y consistencia del sistema**  
+   - El pipeline de feature engineering asegura que los datos de nuevas transacciones se transformen de forma idéntica a los datos de entrenamiento, lo que permite escalar el sistema hacia entornos productivos sin pérdida de precisión.  
+
+4. **Transparencia y cumplimiento regulatorio**  
+   - La incorporación de explicabilidad mediante **SHAP values** ofrece trazabilidad en las decisiones del modelo, lo que es clave para auditorías y regulaciones en el sector financiero.  
+
+5. **Adopción práctica con dashboard interactivo**  
+   - El dashboard en Streamlit se convierte en una herramienta estratégica para los equipos de monitoreo, ya que centraliza la visualización de métricas, resultados y explicaciones de predicciones en tiempo real.  
+
+---
+
+### Conclusión General  
+
+El sistema desarrollado representa un **prototipo sólido de detección de fraude financiero en tiempo real**, con la capacidad de equilibrar **seguridad y experiencia de usuario**.  
