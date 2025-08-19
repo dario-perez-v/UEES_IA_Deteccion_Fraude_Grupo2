@@ -221,13 +221,13 @@ XGBoost obtuvo mejor trade-off entre sensibilidad y especificidad, con AUC ≈ 0
 ![PR RF](src/visualization/pr_curve_RandomForest.png)  
 
 La curva PR muestra buen desempeño general (PR-AUC ≈ 0.94).  
-El modelo de **XGBoost** (incluido en el repositorio) mantuvo un mejor equilibrio, confirmando su idoneidad en datasets desbalanceados.  
+El modelo de XGBoost (incluido en el repositorio) mantuvo un mejor equilibrio, confirmando su idoneidad en datasets desbalanceados.  
 
 ---
 
 ## 8. Conclusiones  
 
-El desarrollo de este proyecto permitió demostrar cómo la integración de técnicas avanzadas de Machine Learning, pipelines reproducibles y herramientas de interpretabilidad puede generar un **sistema robusto y escalable para la detección de fraudes en fintech**.  
+El desarrollo de este proyecto permitió demostrar cómo la integración de técnicas avanzadas de Machine Learning, pipelines reproducibles y herramientas de interpretabilidad puede generar un sistema robusto y escalable para la detección de fraudes en fintech.  
 
 Los hallazgos clave se pueden resumir en los siguientes puntos:  
 
@@ -236,14 +236,14 @@ Los hallazgos clave se pueden resumir en los siguientes puntos:
    - Garantiza un mejor balance entre sensibilidad y precisión, lo que resulta fundamental en contextos de alta desproporción entre transacciones legítimas y fraudulentas.  
 
 2. **Minimización de pérdidas y protección del cliente**  
-   - La reducción de **falsos negativos** implica menores pérdidas económicas directas.  
-   - Al mismo tiempo, la disminución de **falsos positivos** protege la experiencia del cliente, evitando bloqueos innecesarios que podrían traducirse en desconfianza y fuga de usuarios.  
+   - La reducción de falsos negativos implica menores pérdidas económicas directas.  
+   - Al mismo tiempo, la disminución de falsos positivos protege la experiencia del cliente, evitando bloqueos innecesarios que podrían traducirse en desconfianza y fuga de usuarios.  
 
 3. **Escalabilidad y consistencia del sistema**  
    - El pipeline de feature engineering asegura que los datos de nuevas transacciones se transformen de forma idéntica a los datos de entrenamiento, lo que permite escalar el sistema hacia entornos productivos sin pérdida de precisión.  
 
 4. **Transparencia y cumplimiento regulatorio**  
-   - La incorporación de explicabilidad mediante **SHAP values** ofrece trazabilidad en las decisiones del modelo, lo que es clave para auditorías y regulaciones en el sector financiero.  
+   - La incorporación de explicabilidad mediante SHAP values ofrece trazabilidad en las decisiones del modelo, lo que es clave para auditorías y regulaciones en el sector financiero.  
 
 5. **Adopción práctica con dashboard interactivo**  
    - El dashboard en Streamlit se convierte en una herramienta estratégica para los equipos de monitoreo, ya que centraliza la visualización de métricas, resultados y explicaciones de predicciones en tiempo real.  
