@@ -159,13 +159,13 @@ Los gráficos de summary plot muestran la importancia de cada variable en las de
 
 
 ### 6.7 Dashboard Interactivo  
-Se construyó un dashboard en Streamlit (`dashboard/app.py`) que permite:  
+Se construyó un [DASHBOARD](https://ueesiadeteccionfraudegrupo2-cjnrxbfkgmrzndypqfvtgk.streamlit.app/) en Streamlit que permite:  
 - Subir archivos CSV de transacciones  
 - Visualizar probabilidades de fraude  
 - Mostrar curvas ROC y Precision-Recall  
 - Explorar gráficas de importancia de variables con SHAP  
 
-Este dashboard centraliza el análisis para analistas y responsables de seguridad financiera.  
+Este dashboard centraliza el análisis para analistas y responsables de seguridad financiera.  i6
 
 ---
 
