@@ -125,13 +125,23 @@ También se evaluaron las correlaciones entre variables, lo cual permitió ident
 
 <p align="center"> <img src="src/visualization/correlation_matrix.png" alt="Matriz de correlación" width="650"><br> <em>Figura 2. Correlaciones entre las variables del dataset</em> </p>
 
-## Modelado de Machine Learning
 
-En los notebooks de modelado (notebooks/modeling/modeling_rf_xgb.ipynb), entrenamos modelos de Random Forest y XGBoost, comparando sus métricas de desempeño como ROC-AUC y PR-AUC. Los modelos se guardaron en models/trained_models/ y los scripts de entrenamiento están en src/models/train_models.py. Esta etapa permitió seleccionar los modelos más precisos para la detección de fraude.
 
-## Evaluación de Modelos
+### Modelado de Machine Learning
 
-La evaluación de los modelos se realizó en notebooks/evaluation/evaluate_models.ipynb. Se calcularon probabilidades de fraude, curvas ROC y Precision-Recall, matrices de confusión, y se generaron gráficos comparativos entre modelos. Todas las figuras se guardaron en reports/figures/, listas para su inclusión en reportes y presentaciones.
+La fase de modelado se llevó a cabo en el notebook [modeling](notebooks/modeling.ipynb). Se entrenaron modelos supervisados de **Random Forest (RF)** y **XGBoost (XGB)**, utilizando el conjunto de datos previamente procesado. Los scripts de entrenamiento se encuentran en [`src/models/train_models.py`](src/models/train_models.py), y los modelos entrenados fueron almacenados en [`models/trained_models/`](models/trained_models/).  
+
+Random Forest fue considerado como baseline por su robustez y facilidad de interpretación inicial, mientras que XGBoost se evaluó como modelo de referencia por su capacidad de manejar datos desbalanceados y capturar interacciones complejas entre variables. Los resultados confirmaron que XGBoost ofrecía un mejor equilibrio entre recall y precisión, convirtiéndose en el modelo con mayor potencial para despliegue en escenarios reales.
+
+
+### Evaluación de Modelos
+
+La evaluación de los modelos se realizó en el notebook [evaluation](notebooks/evaluation.ipynb). Se calcularon métricas clave como **ROC-AUC** y **PR-AUC**, además de matrices de confusión para comprender en detalle el comportamiento de cada modelo frente a falsos positivos y falsos negativos.  
+
+Los resultados se visualizaron mediante curvas ROC y Precision-Recall, que permiten analizar el desempeño de los clasificadores en contextos de clases desbalanceadas. Todas las figuras se encuentran almacenadas en [`src/visualization/`](src/visualization/), mientras que las métricas tabulares fueron guardadas en [`src/tables/`](src/tables/).  
+
+En las matrices de confusión se evidenció que **Random Forest** tendía a generar un mayor número de falsos negativos, mientras que **XGBoost** alcanzaba un recall superior, lo que lo posiciona como el modelo más adecuado para un sistema antifraude, donde el costo de no detectar un fraude es mayor que el de una alerta falsa.
+
 
 ## Pipeline de Feature Engineering
 
