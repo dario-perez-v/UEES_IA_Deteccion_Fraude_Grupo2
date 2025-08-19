@@ -57,4 +57,60 @@ La estructura del repositorio está diseñada para ser modular y escalable, faci
     └─  setup.py
 ```
 
+2. Limpieza y Preparación de Datos
+
+La primera etapa consistió en limpiar y preparar los datos. En el notebook notebooks/exploratory/data_cleaning.ipynb, cargamos el dataset de Credit Card Fraud Detection, tratamos valores nulos y outliers, y generamos variables derivadas como Amount_log. Los datos limpios se guardaron en data/processed/creditcard_clean.csv, que luego sirvieron como entrada para los modelos. Durante este proceso se generaron gráficos y tablas que muestran la distribución de los datos antes y después de la limpieza, todos almacenados en reports/figures/.
+
+3. Modelado de Machine Learning
+
+En los notebooks de modelado (notebooks/modeling/modeling_rf_xgb.ipynb), entrenamos modelos de Random Forest y XGBoost, comparando sus métricas de desempeño como ROC-AUC y PR-AUC. Los modelos se guardaron en models/trained_models/ y los scripts de entrenamiento están en src/models/train_models.py. Esta etapa permitió seleccionar los modelos más precisos para la detección de fraude.
+
+4. Evaluación de Modelos
+
+La evaluación de los modelos se realizó en notebooks/evaluation/evaluate_models.ipynb. Se calcularon probabilidades de fraude, curvas ROC y Precision-Recall, matrices de confusión, y se generaron gráficos comparativos entre modelos. Todas las figuras se guardaron en reports/figures/, listas para su inclusión en reportes y presentaciones.
+
+5. Pipeline de Feature Engineering
+
+El pipeline de feature engineering, desarrollado en src/features/feature_engineering.py, permite aplicar transformaciones consistentes a nuevas transacciones, asegurando que las características derivadas coincidan con las usadas en los modelos. Esto facilita la integración del sistema en producción y garantiza que el scoring sea confiable.
+
+6. Sistema de Scoring en Tiempo Real
+
+El sistema de scoring en tiempo real, implementado en src/scoring/realtime.py, permite calcular la probabilidad de fraude de cualquier transacción nueva. Esto se complementa con el simulador de transacciones, ubicado en src/scoring/simulator.py y notebooks/simulation/simulation.ipynb, que genera transacciones ficticias para probar el flujo completo y visualizar el comportamiento del sistema mediante tablas y gráficos.
+
+7. Interpretabilidad del Modelo con SHAP
+
+Para explicar las predicciones de los modelos, utilizamos SHAP en src/interpretability/shap_analysis.py. Esto permite identificar cuáles variables son más relevantes en cada predicción, generando SHAP summary plots que muestran la importancia de cada feature y garantizan la trazabilidad y transparencia del sistema.
+
+8. Dashboard Interactivo
+
+Se desarrolló un dashboard interactivo en Streamlit, ubicado en dashboard/app.py. Este dashboard permite:
+
+Subir archivos CSV de transacciones.
+
+Visualizar las probabilidades de fraude calculadas por los modelos.
+
+Explorar gráficos de ROC y Precision-Recall.
+
+Mostrar SHAP summary plots de manera interactiva.
+
+El dashboard facilita la monitorización en tiempo real y la visualización de patrones de fraude, siendo una herramienta clave para analistas y responsables de seguridad financiera.
+
+9. Organización de la Estructura del Proyecto
+
+La estructura del proyecto se organizó de la siguiente manera:
+
+notebooks/: notebooks de exploración, modelado y evaluación.
+
+src/: scripts para entrenamiento, scoring, feature engineering e interpretabilidad.
+
+models/: modelos entrenados y configuraciones.
+
+data/: datos crudos, procesados y externos.
+
+dashboard/: código del dashboard interactivo.
+
+reports/figures/: todas las figuras, gráficas y tablas generadas.
+
+Esta organización permite un flujo de trabajo claro, reproducible y escalable, facilitando tanto la ejecución de experimentos como la entrega de resultados a stakeholders.
+
 
