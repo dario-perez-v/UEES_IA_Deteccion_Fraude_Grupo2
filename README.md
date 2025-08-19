@@ -103,7 +103,7 @@ La estructura del repositorio está diseñada para ser modular y escalable, faci
   - Generación de variables derivadas como `Amount_log`.  
   - Normalización y partición de datos en entrenamiento y validación.  
 - **Almacenamiento estructurado**:  
-  - `data/raw` → datos originales.  
+  - `data/` → datos originales.  
   - `data/processed` → datos limpios y listos para modelado.  
 
 Esta estrategia asegura reproducibilidad y calidad en cada etapa.  
@@ -113,14 +113,14 @@ Esta estrategia asegura reproducibilidad y calidad en cada etapa.
 ## 6. Metodologia del proyecto
 
 ### 6.1 Limpieza y Preparación de Datos  
-En el notebook `notebooks/data_cleaning`, se cargó el dataset de Credit Card Fraud Detection. Se trataron valores nulos y outliers, y se generaron variables derivadas como `Amount_log`.  
-Los datos limpios se guardaron en `creditcard_clean.csv`, que luego sirvieron como entrada para el modelado.  
+En el notebook `data/`, se cargó el dataset de Credit Card Fraud Detection. Se trataron valores nulos y outliers, y se generaron variables derivadas como `Amount_log`.  
+Los datos limpios se guardaron en `data/processed/creditcard_clean.csv`, que luego sirvieron como entrada para el modelado.  
 
-Durante el proceso se generaron gráficos y tablas que muestran la distribución antes y después de la limpieza, almacenados en `reports/figures/`.  
+Durante el proceso se generaron gráficos y tablas que muestran la distribución antes y después de la limpieza, almacenados en `src/visualization/`.  
 
 
 ### 6.2 Modelado de Machine Learning  
-En `notebooks/modeling/modeling_rf_xgb.ipynb` se entrenaron modelos de Random Forest y XGBoost, comparando sus métricas de desempeño como ROC-AUC y PR-AUC.  
+En `notebooks/modeling.ipynb` se entrenaron modelos de Random Forest y XGBoost, comparando sus métricas de desempeño como ROC-AUC y PR-AUC.  
 
 Los modelos entrenados fueron almacenados en `models/trained_models/`.  
 Los scripts de entrenamiento se encuentran en `src/models/train_models.py`.  
@@ -130,14 +130,14 @@ XGBoost superó a Random Forest, mostrando mayor capacidad de detección de frau
 
 
 ### 6.3 Evaluación de Modelos  
-La evaluación se realizó en `notebooks/evaluation/evaluate_models.ipynb`.  
+La evaluación se realizó en `notebooks/evaluation.ipynb`.  
 Se calcularon:  
 - Probabilidades de fraude  
 - Curvas ROC y Precision-Recall  
 - Matrices de confusión  
 - Métricas comparativas  
 
-Todas las figuras fueron guardadas en `reports/figures/`, asegurando trazabilidad de resultados.  
+Todas las figuras fueron guardadas en `src/visualization/`, asegurando trazabilidad de resultados.  
 
 
 ### 6.4 Pipeline de Feature Engineering  
@@ -149,7 +149,7 @@ Esto garantiza consistencia y confiabilidad en el scoring y facilita la integrac
 ### 6.5 Sistema de Scoring en Tiempo Real  
 En `src/scoring/realtime.py` se implementó un sistema de scoring capaz de calcular la probabilidad de fraude para cada transacción.  
 
-Se complementa con un simulador de transacciones (`src/scoring/simulator.py` y `notebooks/simulation/simulation.ipynb`), que permite probar el flujo completo con datos ficticios.  
+Se complementa con un simulador de transacciones (`src/scoring/simulator.py` y `notebooks/simulation.ipynb`), que permite probar el flujo completo con datos ficticios.  
 
 
 ### 6.6 Interpretabilidad con SHAP  
