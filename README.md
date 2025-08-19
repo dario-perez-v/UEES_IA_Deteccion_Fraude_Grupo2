@@ -59,7 +59,7 @@ La estructura del repositorio está diseñada para ser modular y escalable, faci
 
 2. Limpieza y Preparación de Datos
 
-La primera etapa consistió en limpiar y preparar los datos. En el notebook notebooks/exploratory/data_cleaning.ipynb, cargamos el dataset de Credit Card Fraud Detection, tratamos valores nulos y outliers, y generamos variables derivadas como Amount_log. Los datos limpios se guardaron en data/processed/creditcard_clean.csv, que luego sirvieron como entrada para los modelos. Durante este proceso se generaron gráficos y tablas que muestran la distribución de los datos antes y después de la limpieza, todos almacenados en reports/figures/.
+La primera etapa consistió en limpiar y preparar los datos. En el notebook notebooks/exploratory/data_cleaning.ipynb, cargamos el dataset de Credit Card Fraud Detection, tratamos valores nulos y outliers, y generamos variables derivadas como Amount_log. Los datos limpios se guardaron en data/processed/creditcard_clean.csv, que luego sirvieron como entrada para los modelos. Durante este proceso se generaron gráficos y tablas que muestran la distribución de los datos antes y después de la limpieza, todos almacenados en src/visualization/.
 
 3. Modelado de Machine Learning
 
