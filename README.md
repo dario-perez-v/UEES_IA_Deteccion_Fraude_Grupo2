@@ -1,12 +1,19 @@
 # Detección de Fraude en Transacciones Financieras
 
-## Introduccion 
+## 1. Resumen 
 
-El fraude financiero es uno de los grandes retos en la era digital. Cada día, bancos y empresas fintech procesan miles de transacciones, y entre ellas se esconden intentos de fraude que, si no son detectados, pueden generar pérdidas económicas y afectar la confianza de los clientes.
+El sector **fintech** ha transformado radicalmente la forma en que los usuarios acceden y utilizan servicios financieros. Pagos digitales, transferencias instantáneas, billeteras electrónicas y crédito en línea son hoy servicios cotidianos. Sin embargo, este crecimiento ha venido acompañado de un reto crítico: **el fraude en transacciones digitales**.
 
-Este proyecto nace con ese desafío: diseñar un modelo de inteligencia artificial que identifique transacciones fraudulentas con la mayor precisión posible, pero sin caer en el error de bloquear operaciones legítimas que afectan la experiencia del usuario.
+Aunque las operaciones fraudulentas representan un porcentaje marginal del volumen total (≈0.1%), concentran hasta un **60% de las pérdidas financieras** en algunas instituciones. El costo no es solo económico: cada transacción legítima bloqueada o cada falso positivo representa una **fricción directa con el cliente**, deteriora la experiencia, y puede desencadenar la pérdida de usuarios hacia competidores. En un mercado hipercompetitivo, la capacidad de diferenciarse por **confianza, seguridad y experiencia fluida** es vital.
 
-Nuestra propuesta combina modelos de machine learning con técnicas modernas de interpretabilidad. Además, construimos un prototipo práctico en forma de dashboard interactivo, que muestra cómo estas soluciones podrían aplicarse en un escenario real.
+Este proyecto aborda ese desafío mediante el desarrollo de un **prototipo integral de detección de fraude en tiempo real**, construido sobre una arquitectura modular y escalable. El sistema combina **machine learning supervisado (Random Forest, XGBoost)** con técnicas de **explicabilidad (SHAP)**, un **pipeline de features estandarizado**, un **simulador de transacciones** y un **dashboard interactivo** para analistas. Adicionalmente, se exploró el diseño de una **Red Neuronal Artificial (RNA)** implementada desde cero en NumPy, lo que permitió un control absoluto del flujo de datos, inicialización de pesos, funciones de activación y proceso de entrenamiento. Este ejercicio académico no solo afianzó el entendimiento profundo de los mecanismos internos de un modelo, sino que además sentó las bases para migrar hacia entornos productivos con tecnologías avanzadas.
+
+En síntesis, el proyecto propone una solución que equilibra tres dimensiones críticas para las fintech:
+- **Precisión predictiva**: detección efectiva de transacciones fraudulentas.  
+- **Experiencia del cliente**: reducción de falsos positivos y menor fricción.  
+- **Confiabilidad regulatoria**: modelos explicables y auditables.  
+
+El impacto proyectado es significativo: **reducción de pérdidas financieras, incremento en la confianza de los clientes, y cumplimiento regulatorio transparente**.
 
 
 ## Estructura del proyecto
