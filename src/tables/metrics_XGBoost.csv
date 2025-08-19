@@ -1,2 +1,3 @@
-Model,ROC-AUC,PR-AUC,Accuracy,Positive Rate Predicted
-XGBoost,0.9925093598295114,0.9486670828017032,0.9998378717495048,0.0015825127059205008
+version https://git-lfs.github.com/spec/v1
+oid sha256:b323e6652b4c1ab0743abd03c89ddf95823877854e6bf48d755b5e60353b30a6
+size 141
