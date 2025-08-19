@@ -95,7 +95,7 @@ La estructura del repositorio está diseñada para ser modular y escalable, faci
 
 ---
 
-## 4) Datos y Preparación
+## 5. Datos y Preparación
 
 - **Dataset base**: Credit Card Fraud Detection (Kaggle).  
 - **Procesamiento**:  
