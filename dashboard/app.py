@@ -3,6 +3,8 @@ import numpy as np
 import os
 import joblib
 import streamlit as st
+import shap
+import matplotlib.pyplot as plt
 
 # --------------------
 # Directorios
@@ -53,5 +55,20 @@ if uploaded_file is not None:
 
     st.write("Distribución de probabilidades de fraude:")
     st.bar_chart(sample_df[['RF_prob', 'XGB_prob']])
+
+    # --------------------
+    # SHAP explainability
+    # --------------------
+    st.write("Explicabilidad del modelo XGBoost con SHAP:")
+    explainer = shap.TreeExplainer(xgb_model)
+    shap_values = explainer.shap_values(sample_df[features_model])
+
+    # Summary plot
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    plt.figure(figsize=(10,6))
+    shap.summary_plot(shap_values, sample_df[features_model], show=False)
+    st.pyplot(bbox_inches='tight')
+    plt.clf()
+
 else:
     st.info("Por favor sube un archivo CSV para continuar.")
