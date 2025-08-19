@@ -42,7 +42,8 @@
     │       roc_curve.png
     │       roc_curve_RandomForest.png
     │       roc_curve_XGBoost.png
+    │
     │   README.md
     │   requirements.txt
-    └─   setup.py
+    └─  setup.py
 ```
