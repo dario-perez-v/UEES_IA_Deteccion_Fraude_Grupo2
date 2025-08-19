@@ -126,15 +126,14 @@ También se evaluaron las correlaciones entre variables, lo cual permitió ident
 <p align="center"> <img src="src/visualization/correlation_matrix.png" alt="Matriz de correlación" width="650"><br> <em>Figura 2. Correlaciones entre las variables del dataset</em> </p>
 
 
-
-### Modelado de Machine Learning
+## Modelado de Machine Learning
 
 La fase de modelado se llevó a cabo en el notebook [modeling](notebooks/modeling.ipynb). Se entrenaron modelos supervisados de **Random Forest (RF)** y **XGBoost (XGB)**, utilizando el conjunto de datos previamente procesado. Los scripts de entrenamiento se encuentran en [`src/models/train_models.py`](src/models/train_models.py), y los modelos entrenados fueron almacenados en [`models/trained_models/`](models/trained_models/).  
 
 Random Forest fue considerado como baseline por su robustez y facilidad de interpretación inicial, mientras que XGBoost se evaluó como modelo de referencia por su capacidad de manejar datos desbalanceados y capturar interacciones complejas entre variables. Los resultados confirmaron que XGBoost ofrecía un mejor equilibrio entre recall y precisión, convirtiéndose en el modelo con mayor potencial para despliegue en escenarios reales.
 
 
-### Evaluación de Modelos
+## Evaluación de Modelos
 
 La evaluación de los modelos se realizó en el notebook [evaluation](notebooks/evaluation.ipynb). Se calcularon métricas clave como **ROC-AUC** y **PR-AUC**, además de matrices de confusión para comprender en detalle el comportamiento de cada modelo frente a falsos positivos y falsos negativos.  
 
@@ -145,30 +144,33 @@ En las matrices de confusión se evidenció que **Random Forest** tendía a gene
 
 ## Pipeline de Feature Engineering
 
-El pipeline de feature engineering, desarrollado en src/features/feature_engineering.py, permite aplicar transformaciones consistentes a nuevas transacciones, asegurando que las características derivadas coincidan con las usadas en los modelos. Esto facilita la integración del sistema en producción y garantiza que el scoring sea confiable.
+El pipeline de **feature engineering**, implementado en [`src/features/feature_engineering.py`](src/features/feature_engineering.py), se diseñó para garantizar que las transformaciones aplicadas durante el entrenamiento se repliquen de forma consistente en cualquier nueva transacción evaluada por el sistema.  
+
+Este componente asegura coherencia en el flujo de datos, evita errores en producción y facilita la escalabilidad del sistema. Es un paso clave para trasladar el modelo desde un entorno experimental hacia un entorno productivo.
 
 ## Sistema de Scoring en Tiempo Real
 
-El sistema de scoring en tiempo real, implementado en src/scoring/realtime.py, permite calcular la probabilidad de fraude de cualquier transacción nueva. Esto se complementa con el simulador de transacciones, ubicado en src/scoring/simulator.py y notebooks/simulation/simulation.ipynb, que genera transacciones ficticias para probar el flujo completo y visualizar el comportamiento del sistema mediante tablas y gráficos.
+Con el propósito de simular un escenario real de negocio, se implementó un sistema de scoring en tiempo real en [`src/scoring/realtime.py`](src/scoring/realtime.py). Este módulo recibe nuevas transacciones y devuelve la **probabilidad de fraude** en cuestión de milisegundos.  
+
+Para validar su funcionamiento se desarrolló además un **simulador de transacciones** en [`src/scoring/simulator.py`](src/scoring/simulator.py) y en el notebook [simulation](notebooks/simulation.ipynb). El simulador permite generar datos sintéticos y someter al sistema a distintos escenarios de carga, lo que facilita la validación end-to-end y la calibración de umbrales de decisión.
+
 
 ## Interpretabilidad del Modelo con SHAP
 
-Para explicar las predicciones de los modelos, utilizamos SHAP en src/interpretability/shap_analysis.py. Esto permite identificar cuáles variables son más relevantes en cada predicción, generando SHAP summary plots que muestran la importancia de cada feature y garantizan la trazabilidad y transparencia del sistema.
+La interpretabilidad es un aspecto crítico en soluciones antifraude, tanto para garantizar confianza con los clientes como para cumplir requisitos regulatorios. Por ello se utilizó **SHAP** en [`src/interpretability/shap_analysis.py`](src/interpretability/shap_analysis.py).  
+
+El análisis con SHAP permitió identificar qué variables tenían mayor influencia en las predicciones. Se generaron tanto gráficos **globales** (summary plots que muestran el impacto agregado de las variables) como explicaciones **locales** (caso por caso), ofreciendo una trazabilidad completa de las decisiones del modelo.  
+
 
 ## Dashboard Interactivo
 
-Se desarrolló un dashboard interactivo en Streamlit, ubicado en dashboard/app.py. Este dashboard permite:
+Finalmente, se desarrolló un **dashboard interactivo** en Streamlit, ubicado en [`dashboard/app.py`](dashboard/app.py). Esta interfaz permite:  
 
-Subir archivos CSV de transacciones.
+- Subir archivos CSV de transacciones.  
+- Visualizar las probabilidades de fraude generadas por los modelos.  
+- Explorar gráficas de rendimiento como curvas ROC y Precision-Recall.  
+- Consultar de manera interactiva los SHAP summary plots para interpretar las decisiones del sistema.  
 
-Visualizar las probabilidades de fraude calculadas por los modelos.
+El dashboard constituye una herramienta clave para **analistas y responsables de seguridad financiera**, ya que facilita la monitorización del sistema en tiempo real y acerca resultados técnicos a perfiles no técnicos.  
 
-Explorar gráficos de ROC y Precision-Recall.
-
-Mostrar SHAP summary plots de manera interactiva.
-
-El dashboard facilita la monitorización en tiempo real y la visualización de patrones de fraude, siendo una herramienta clave para analistas y responsables de seguridad financiera.
-
-Esta organización permite un flujo de trabajo claro, reproducible y escalable, facilitando tanto la ejecución de experimentos como la entrega de resultados a stakeholders.
-
-
+En conjunto, esta metodología asegura un flujo de trabajo claro, reproducible y escalable, que cubre desde la preparación inicial de los datos hasta la interpretación y visualización de los resultados, alineándose con las necesidades del negocio y los requisitos técnicos de un sistema antifraude moderno.
