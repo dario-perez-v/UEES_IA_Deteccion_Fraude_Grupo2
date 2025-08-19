@@ -93,6 +93,23 @@ La estructura del repositorio está diseñada para ser modular y escalable, faci
     └─  setup.py
 ```
 
+---
+
+## 4) Datos y Preparación
+
+- **Dataset base**: Credit Card Fraud Detection (Kaggle).  
+- **Procesamiento**:  
+  - Tratamiento de valores nulos y outliers.  
+  - Generación de variables derivadas como `Amount_log`.  
+  - Normalización y partición de datos en entrenamiento y validación.  
+- **Almacenamiento estructurado**:  
+  - `data/raw` → datos originales.  
+  - `data/processed` → datos limpios y listos para modelado.  
+
+Esta estrategia asegura reproducibilidad y calidad en cada etapa.  
+
+---
+
 ## Metodologia del proyecto
 
 ## Limpieza y Preparación de Datos
