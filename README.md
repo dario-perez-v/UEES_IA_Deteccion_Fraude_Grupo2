@@ -114,7 +114,7 @@ Esta estrategia asegura reproducibilidad y calidad en cada etapa.
 
 ## Limpieza y Preparación de Datos
 
-La primera etapa consistió en limpiar y preparar los datos. En el notebook [data_cleaning](notebooks/exploratory/data_cleaning.ipynb), cargamos el dataset de Credit Card Fraud Detection, tratamos valores nulos y outliers, y generamos variables derivadas como Amount_log. Los datos limpios se guardaron en [creditcard_clean](data/processed/creditcard_clean.csv), que luego sirvieron como entrada para los modelos. Durante este proceso se generaron gráficos y tablas que muestran la distribución de los datos antes y después de la limpieza, todos almacenados en [visualization](src/visualization/).
+La primera etapa consistió en limpiar y preparar los datos. En el notebook [data_cleaning](notebooks/data_cleaning.ipynb), cargamos el dataset de Credit Card Fraud Detection, tratamos valores nulos y outliers, y generamos variables derivadas como Amount_log. Los datos limpios se guardaron en [creditcard_clean](data/processed/creditcard_clean.csv), que luego sirvieron como entrada para los modelos. Durante este proceso se generaron gráficos y tablas que muestran la distribución de los datos antes y después de la limpieza, todos almacenados en [visualization](src/visualization/).
 
 ## Modelado de Machine Learning
 
