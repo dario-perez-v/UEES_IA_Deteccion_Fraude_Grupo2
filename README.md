@@ -13,14 +13,14 @@ En síntesis, el proyecto propone una solución que equilibra tres dimensiones c
 - **Experiencia del cliente**: reducción de falsos positivos y menor fricción.  
 - **Confiabilidad regulatoria**: modelos explicables y auditables.  
 
-El impacto proyectado es significativo: **reducción de pérdidas financieras, incremento en la confianza de los clientes, y cumplimiento regulatorio transparente**.
+El impacto proyectado es significativo: reducción de pérdidas financieras, incremento en la confianza de los clientes, y cumplimiento regulatorio transparente.
 
 ---
 
 
 ## 2. Contexto de Negocio y Problema
 
-En la economía digital, la **confianza del cliente** es el activo más importante. Para las fintech, mantener un balance adecuado entre **seguridad** y **experiencia de usuario** es un reto constante.  
+En la economía digital, la confianza del cliente es el activo más importante. Para las fintech, mantener un balance adecuado entre seguridad y experiencia de usuario es un reto constante.  
 Los principales problemas identificados son:
 
 - **Alta concentración de pérdidas**: aunque las transacciones fraudulentas son escasas, las pérdidas económicas que generan son desproporcionadas.  
@@ -28,13 +28,13 @@ Los principales problemas identificados son:
 - **Evolución del fraude**: los atacantes innovan constantemente. Un sistema estático pierde efectividad frente a nuevas modalidades.  
 - **Exigencia regulatoria**: las instituciones deben demostrar que las decisiones automáticas son explicables y no discriminatorias.  
 
-Frente a este escenario, una solución de **detección de fraude en tiempo real, explicable y adaptable** se convierte en una ventaja competitiva y estratégica.
+Frente a este escenario, una solución de detección de fraude en tiempo real, explicable y adaptable se convierte en una ventaja competitiva y estratégica.
 
 ---
 
 ## 3. Objetivos del Proyecto
 
-El proyecto persigue **cuatro objetivos estratégicos**:
+El proyecto persigue cuatro objetivos estratégicos:
 
 1. **Maximizar la detección de fraude** con modelos predictivos robustos y métricas adecuadas (ROC-AUC, PR-AUC, recall).  
 2. **Minimizar la tasa de falsos positivos**, asegurando que clientes legítimos no sean penalizados innecesariamente.  
@@ -113,14 +113,14 @@ Esta estrategia asegura reproducibilidad y calidad en cada etapa.
 ## 6. Metodologia del proyecto
 
 ### 6.1 Limpieza y Preparación de Datos  
-En el notebook `notebooks/data_cleaning`, se cargó el dataset de **Credit Card Fraud Detection**. Se trataron valores nulos y outliers, y se generaron variables derivadas como `Amount_log`.  
+En el notebook `notebooks/data_cleaning`, se cargó el dataset de Credit Card Fraud Detection. Se trataron valores nulos y outliers, y se generaron variables derivadas como `Amount_log`.  
 Los datos limpios se guardaron en `creditcard_clean.csv`, que luego sirvieron como entrada para el modelado.  
 
 Durante el proceso se generaron gráficos y tablas que muestran la distribución antes y después de la limpieza, almacenados en `reports/figures/`.  
 
 
 ### 6.2 Modelado de Machine Learning  
-En `notebooks/modeling/modeling_rf_xgb.ipynb` se entrenaron modelos de **Random Forest** y **XGBoost**, comparando sus métricas de desempeño como **ROC-AUC** y **PR-AUC**.  
+En `notebooks/modeling/modeling_rf_xgb.ipynb` se entrenaron modelos de Random Forest y XGBoost, comparando sus métricas de desempeño como ROC-AUC y PR-AUC.  
 
 Los modelos entrenados fueron almacenados en `models/trained_models/`.  
 Los scripts de entrenamiento se encuentran en `src/models/train_models.py`.  
