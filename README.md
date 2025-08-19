@@ -32,7 +32,16 @@ Frente a este escenario, una solución de **detección de fraude en tiempo real,
 
 ---
 
+## 3) Objetivos del Proyecto
 
+El proyecto persigue **cuatro objetivos estratégicos**:
+
+1. **Maximizar la detección de fraude** con modelos predictivos robustos y métricas adecuadas (ROC-AUC, PR-AUC, recall).  
+2. **Minimizar la tasa de falsos positivos**, asegurando que clientes legítimos no sean penalizados innecesariamente.  
+3. **Explicar las decisiones del modelo**, garantizando transparencia regulatoria y confianza por parte de clientes y auditores.  
+4. **Construir un prototipo replicable y escalable**, capaz de integrarse en entornos productivos y evolucionar hacia nuevas técnicas (GNNs, autoencoders, aprendizaje online).  
+
+---
 
 ## 2. Estructura del proyecto
 
