@@ -15,8 +15,26 @@ En síntesis, el proyecto propone una solución que equilibra tres dimensiones c
 
 El impacto proyectado es significativo: **reducción de pérdidas financieras, incremento en la confianza de los clientes, y cumplimiento regulatorio transparente**.
 
+---
 
-## Estructura del proyecto
+
+## 2. Contexto de Negocio y Problema
+
+En la economía digital, la **confianza del cliente** es el activo más importante. Para las fintech, mantener un balance adecuado entre **seguridad** y **experiencia de usuario** es un reto constante.  
+Los principales problemas identificados son:
+
+- **Alta concentración de pérdidas**: aunque las transacciones fraudulentas son escasas, las pérdidas económicas que generan son desproporcionadas.  
+- **Falsos positivos**: los modelos tradicionales suelen ser conservadores, marcando como sospechosas operaciones legítimas. Esto degrada la experiencia del cliente y provoca deserción.  
+- **Evolución del fraude**: los atacantes innovan constantemente. Un sistema estático pierde efectividad frente a nuevas modalidades.  
+- **Exigencia regulatoria**: las instituciones deben demostrar que las decisiones automáticas son explicables y no discriminatorias.  
+
+Frente a este escenario, una solución de **detección de fraude en tiempo real, explicable y adaptable** se convierte en una ventaja competitiva y estratégica.
+
+---
+
+
+
+## 2. Estructura del proyecto
 
 La estructura del repositorio está diseñada para ser modular y escalable, facilitando la reproducibilidad de los experimentos y la organización de los componentes.
 
