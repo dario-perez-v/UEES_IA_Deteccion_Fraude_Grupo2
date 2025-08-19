@@ -116,12 +116,14 @@ Esta estrategia asegura reproducibilidad y calidad en cada etapa.
 
 La primera etapa consistió en limpiar y preparar los datos. En el notebook [data_cleaning](notebooks/data_cleaning.ipynb), cargamos el dataset de Credit Card Fraud Detection, tratamos valores nulos y outliers, y generamos variables derivadas como Amount_log. Los datos limpios se guardaron en [creditcard_clean](data/processed/creditcard_clean.csv), que luego sirvieron como entrada para los modelos. Durante este proceso se generaron gráficos y tablas que muestran la distribución de los datos antes y después de la limpieza, todos almacenados en [visualization](src/visualization/).
 
-El proyecto se llevó a cabo en distintas etapas, cada una acompañada de análisis visuales y experimentos que nos permitieron entender cómo se comportaban los modelos:
+En la fase de exploración de datos realizamos un análisis para entender cómo se distribuían las transacciones y si existían patrones que diferenciaran a las fraudulentas de las legítimas.
 
-1. Curvas de Entrenamiento
+<p align="center"> <img src="src/visualization/hist_amount.png" alt="Distribución de montos" width="600"><br> <em>Figura 1. Distribución de montos en las transacciones</em> </p>
 
-Durante el entrenamiento probamos distintas configuraciones: funciones de activación, arquitecturas de red, tasas de aprendizaje y número de épocas. Estas curvas muestran el comportamiento de la pérdida y la precisión, permitiendo detectar tanto mejoras como posibles problemas de sobreajuste.
 
+También se evaluaron las correlaciones entre variables, lo cual permitió identificar relaciones significativas que podían aportar información útil al modelo.
+
+<p align="center"> <img src="src/visualization/correlation_matrix.png" alt="Matriz de correlación" width="650"><br> <em>Figura 2. Correlaciones entre las variables del dataset</em> </p>
 
 ## Modelado de Machine Learning
 
